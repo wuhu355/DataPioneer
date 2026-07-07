@@ -8,6 +8,7 @@ import type {
   RankingItem,
   GaugeData,
   RadarData,
+  TimeRange,
 } from '@/types';
 import { createInitialAsyncState } from '@/types';
 import { dashboardService } from '@/services';
@@ -16,7 +17,6 @@ import { logger } from '@/utils/logger';
 const log = (msg: string, data?: unknown) => logger.debug('store', msg, data);
 
 interface DashboardState {
-  // Data domains
   overview: AsyncState<OverviewData>;
   trend: AsyncState<TrendData>;
   distribution: AsyncState<DistributionItem[]>;
@@ -24,19 +24,9 @@ interface DashboardState {
   rankings: AsyncState<RankingItem[]>;
   gauge: AsyncState<GaugeData>;
   radar: AsyncState<RadarData>;
-
-  // Combined loading
   isLoading: boolean;
 
-  // Actions
-  fetchOverview: () => Promise<void>;
-  fetchTrendData: () => Promise<void>;
-  fetchDistribution: () => Promise<void>;
-  fetchMapData: () => Promise<void>;
-  fetchRankings: () => Promise<void>;
-  fetchGaugeData: () => Promise<void>;
-  fetchRadarData: () => Promise<void>;
-  fetchAll: () => Promise<void>;
+  fetchAll: (timeRange: TimeRange) => Promise<void>;
   reset: () => void;
 }
 
@@ -51,47 +41,16 @@ const initialState = {
   isLoading: false,
 };
 
-/**
- * Generic fetch wrapper: set loading → call service → set data or error.
- */
-async function fetchDomain<T>(
-  domain: keyof DashboardState,
-  fetcher: () => Promise<T>,
-  set: (partial: Partial<DashboardState>) => void,
-): Promise<void> {
-  log(`Fetching ${domain}...`);
-  set({
-    [domain]: { data: null, loading: true, error: null },
-    isLoading: true,
-  } as Partial<DashboardState>);
-  try {
-    const data = await fetcher();
-    set({ [domain]: { data, loading: false, error: null } } as Partial<DashboardState>);
-    log(`${domain} loaded successfully`, data);
-  } catch (err) {
-    const message = err instanceof Error ? err.message : String(err);
-    logger.error('store', `Failed to fetch ${domain}: ${message}`);
-    set({ [domain]: { data: null, loading: false, error: message } } as Partial<DashboardState>);
-  }
-}
-
 export const useDashboardStore = create<DashboardState>((set) => ({
   ...initialState,
 
-  fetchOverview: () => fetchDomain('overview', () => dashboardService.getOverview(), set),
-  fetchTrendData: () => fetchDomain('trend', () => dashboardService.getTrendData(), set),
-  fetchDistribution: () =>
-    fetchDomain('distribution', () => dashboardService.getDistribution(), set),
-  fetchMapData: () => fetchDomain('mapData', () => dashboardService.getMapData(), set),
-  fetchRankings: () => fetchDomain('rankings', () => dashboardService.getRankings(), set),
-  fetchGaugeData: () => fetchDomain('gauge', () => dashboardService.getGaugeData(), set),
-  fetchRadarData: () => fetchDomain('radar', () => dashboardService.getRadarData(), set),
-
-  fetchAll: async () => {
-    log('Fetching all dashboard data...');
+  fetchAll: async (timeRange: TimeRange) => {
+    log(`Fetching all dashboard data for ${timeRange}...`);
     set({ isLoading: true });
+    const params = { timeRange };
+
     try {
-      const results = await dashboardService.getAllData();
+      const results = await dashboardService.getAllData(params);
       set({
         overview: { data: results.overview, loading: false, error: null },
         trend: { data: results.trend, loading: false, error: null },
@@ -102,10 +61,10 @@ export const useDashboardStore = create<DashboardState>((set) => ({
         radar: { data: results.radar, loading: false, error: null },
         isLoading: false,
       });
-      log('All dashboard data loaded');
+      log(`All dashboard data loaded for ${timeRange}`);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      logger.error('store', `Failed to fetch all data: ${message}`);
+      logger.error('store', `Failed to fetch data for ${timeRange}: ${message}`);
       set({ isLoading: false });
     }
   },

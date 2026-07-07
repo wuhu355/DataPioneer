@@ -1,0 +1,25 @@
+/* ========================================
+   Theme 3: 商务蓝白风
+   风格：干净、明亮、企业 BI / 管理后台风格
+   ======================================== */
+:root {
+  --color-bg-primary: #f0f4f8;
+  --color-bg-secondary: rgba(255, 255, 255, 0.9);
+  --color-bg-card: #ffffff;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-active: rgba(24, 144, 255, 0.5);
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #5a6a8a;
+  --color-text-muted: #a0aec0;
+  --color-accent: #1890ff;
+  --color-accent-secondary: #722ed1;
+  --color-success: #52c41a;
+  --color-warning: #faad14;
+  --color-danger: #ff4d4f;
+  --chart-color-1: #1890ff;
+  --chart-color-2: #722ed1;
+  --chart-color-3: #ff4d4f;
+  --chart-color-4: #52c41a;
+  --chart-color-5: #faad14;
+  --chart-color-6: #13c2c2;
+}

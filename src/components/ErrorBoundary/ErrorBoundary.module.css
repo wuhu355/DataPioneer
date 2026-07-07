@@ -4,7 +4,7 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: var(--color-bg-primary);
+  background: #0a1628;
 }
 
 .content {
@@ -20,13 +20,13 @@
 }
 
 .title {
-  color: var(--color-text-primary);
+  color: #e8f0fe;
   font-size: 24px;
   font-weight: 600;
 }
 
 .message {
-  color: var(--color-text-secondary);
+  color: #8da4c9;
   font-size: 14px;
   max-width: 400px;
   word-break: break-all;
@@ -35,15 +35,16 @@
 .retryBtn {
   margin-top: 8px;
   padding: 10px 32px;
-  border: 1px solid var(--color-accent);
+  border: 1px solid rgba(79, 172, 254, 0.4);
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--color-accent);
+  color: #4facfe;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .retryBtn:hover {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(79, 172, 254, 0.1);
+  border-color: rgba(79, 172, 254, 0.7);
 }

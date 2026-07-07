@@ -1,0 +1,56 @@
+/* ========================================
+   Theme: 暗夜数据美学 (Dark Data Aesthetics)
+   核心：玻璃态 + 能量渐变 + 粒子流动 + 克制密度
+   ======================================== */
+
+:root {
+  /* ── 深海暗蓝底 ── */
+  --color-bg-primary: #0a1628;
+  --color-bg-secondary: rgba(15, 35, 70, 0.55);
+  --color-bg-card: rgba(15, 35, 70, 0.35);
+
+  /* ── 毛玻璃边框 ── */
+  --color-border: rgba(79, 172, 254, 0.12);
+  --color-border-hover: rgba(79, 172, 254, 0.28);
+  --color-border-active: rgba(79, 172, 254, 0.45);
+
+  /* ── 文字层级 ── */
+  --color-text-primary: #e8f0fe;
+  --color-text-secondary: #8da4c9;
+  --color-text-muted: #4a6180;
+
+  /* ── 蓝紫渐变主色 ── */
+  --color-accent: #4facfe;
+  --color-accent-secondary: #a18cd1;
+  --gradient-primary: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%);
+  --gradient-warm: linear-gradient(135deg, #4facfe 0%, #43e97b 100%);
+  --gradient-glow: linear-gradient(135deg, rgba(79,172,254,0.4) 0%, rgba(161,140,209,0.4) 100%);
+
+  /* ── 状态色（压低饱和度，融入暗蓝调） ── */
+  --color-success: #43e97b;
+  --color-warning: #f5af19;
+  --color-danger: #fc5c65;
+
+  /* ── 图表色盘（蓝紫绿暖四色渐变） ── */
+  --chart-color-1: #4facfe;
+  --chart-color-2: #a18cd1;
+  --chart-color-3: #43e97b;
+  --chart-color-4: #f5af19;
+  --chart-color-5: #fc5c65;
+  --chart-color-6: #6dd5ed;
+}
+
+/* ── 呼吸灯动画 ── */
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ── 顶部发光横线 ── */
+.header::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--gradient-primary);
+  opacity: 0.4;
+}

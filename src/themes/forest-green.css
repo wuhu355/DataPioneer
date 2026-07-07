@@ -1,0 +1,25 @@
+/* ========================================
+   Theme 4: 军事绿屏风
+   风格：硬朗、监控/安防/工业大屏
+   ======================================== */
+:root {
+  --color-bg-primary: #0a1a0f;
+  --color-bg-secondary: rgba(0, 40, 20, 0.5);
+  --color-bg-card: rgba(0, 30, 15, 0.4);
+  --color-border: rgba(0, 255, 100, 0.15);
+  --color-border-active: rgba(0, 255, 100, 0.4);
+  --color-text-primary: #e8ffe8;
+  --color-text-secondary: #8abf9a;
+  --color-text-muted: #4a7a5a;
+  --color-accent: #00ff64;
+  --color-accent-secondary: #00c896;
+  --color-success: #00ff64;
+  --color-warning: #ffc800;
+  --color-danger: #ff4444;
+  --chart-color-1: #00ff64;
+  --chart-color-2: #00c896;
+  --chart-color-3: #ffc800;
+  --chart-color-4: #44ddff;
+  --chart-color-5: #ff8844;
+  --chart-color-6: #ccff00;
+}

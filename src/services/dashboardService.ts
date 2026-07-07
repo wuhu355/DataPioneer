@@ -1,17 +1,8 @@
 import { createDataAdapter, type IDataAdapter } from '@/adapters';
+import type { AdapterFetchParams } from '@/adapters/types';
 import type { DashboardData } from '@/types/dashboard';
 import { logger } from '@/utils/logger';
 
-/**
- * Dashboard service — business logic layer.
- * Connects the data adapter to the Zustand store.
- *
- * Responsibilities:
- * - Call adapter methods
- * - Transform / validate data before consumption
- * - Provide sensible defaults for missing/null values
- * - All business rules live here, not in components
- */
 class DashboardService {
   private adapter: IDataAdapter;
 
@@ -20,57 +11,52 @@ class DashboardService {
     logger.info('service', 'DashboardService initialized');
   }
 
-  /** Change the data adapter at runtime (useful for testing) */
   setAdapter(adapter: IDataAdapter): void {
     this.adapter = adapter;
     logger.info('service', 'Adapter replaced');
   }
 
-  async getOverview() {
-    return this.adapter.fetchOverview();
+  async getOverview(params: AdapterFetchParams) {
+    return this.adapter.fetchOverview(params);
   }
 
-  async getTrendData() {
-    return this.adapter.fetchTrendData();
+  async getTrendData(params: AdapterFetchParams) {
+    return this.adapter.fetchTrendData(params);
   }
 
-  async getDistribution() {
-    return this.adapter.fetchDistribution();
+  async getDistribution(params: AdapterFetchParams) {
+    return this.adapter.fetchDistribution(params);
   }
 
-  async getMapData() {
-    return this.adapter.fetchMapData();
+  async getMapData(params: AdapterFetchParams) {
+    return this.adapter.fetchMapData(params);
   }
 
-  async getRankings() {
-    const data = await this.adapter.fetchRankings();
-    // Ensure sorted by rank
+  async getRankings(params: AdapterFetchParams) {
+    const data = await this.adapter.fetchRankings(params);
     return data.sort((a, b) => a.rank - b.rank);
   }
 
-  async getGaugeData() {
-    return this.adapter.fetchGaugeData();
+  async getGaugeData(params: AdapterFetchParams) {
+    return this.adapter.fetchGaugeData(params);
   }
 
-  async getRadarData() {
-    return this.adapter.fetchRadarData();
+  async getRadarData(params: AdapterFetchParams) {
+    return this.adapter.fetchRadarData(params);
   }
 
-  /** Fetch all dashboard data in parallel */
-  async getAllData(): Promise<DashboardData> {
+  async getAllData(params: AdapterFetchParams): Promise<DashboardData> {
     const [overview, trend, distribution, mapData, rankings, gauge, radar] = await Promise.all([
-      this.adapter.fetchOverview(),
-      this.adapter.fetchTrendData(),
-      this.adapter.fetchDistribution(),
-      this.adapter.fetchMapData(),
-      this.adapter.fetchRankings().then((d) => d.sort((a, b) => a.rank - b.rank)),
-      this.adapter.fetchGaugeData(),
-      this.adapter.fetchRadarData(),
+      this.adapter.fetchOverview(params),
+      this.adapter.fetchTrendData(params),
+      this.adapter.fetchDistribution(params),
+      this.adapter.fetchMapData(params),
+      this.adapter.fetchRankings(params).then((d) => d.sort((a, b) => a.rank - b.rank)),
+      this.adapter.fetchGaugeData(params),
+      this.adapter.fetchRadarData(params),
     ]);
-
     return { overview, trend, distribution, mapData, rankings, gauge, radar };
   }
 }
 
-/** Singleton service instance — ready to use */
 export const dashboardService = new DashboardService(createDataAdapter());

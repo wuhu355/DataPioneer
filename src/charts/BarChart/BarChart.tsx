@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 import * as echarts from 'echarts';
 import type { EChartsType } from 'echarts';
 import { Card } from '@/components/Card';
-import { CHART_COLORS } from '@/types/chart';
 import type { BaseChartProps } from '@/types';
 import styles from './BarChart.module.css';
 
@@ -15,7 +14,6 @@ export function BarChart({
   data,
   loading = false,
   error = null,
-  height = 280,
 }: BaseChartProps<BarChartData>) {
   const chartRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<EChartsType | null>(null);
@@ -29,7 +27,6 @@ export function BarChart({
     return () => {
       window.removeEventListener('resize', onResize);
       instance.dispose();
-      instanceRef.current = null;
     };
   }, []);
 
@@ -37,61 +34,48 @@ export function BarChart({
     if (!instanceRef.current || !data) return;
 
     instanceRef.current.setOption({
-      color: CHART_COLORS,
       backgroundColor: 'transparent',
       tooltip: {
         trigger: 'axis',
-        backgroundColor: 'rgba(6, 30, 93, 0.9)',
-        borderColor: 'rgba(0, 212, 255, 0.3)',
-        textStyle: { color: '#fff', fontSize: 12 },
+        backgroundColor: 'rgba(10, 22, 40, 0.92)',
+        borderColor: 'rgba(79,172,254,0.3)',
+        textStyle: { color: '#e8f0fe', fontSize: 11, fontFamily: 'Consolas, monospace' },
       },
-      grid: {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 50,
-      },
+      grid: { top: 16, right: 16, bottom: 28, left: 42 },
       xAxis: {
         type: 'category',
         data: data.categories,
-        axisLine: { lineStyle: { color: 'rgba(0,212,255,0.2)' } },
-        axisLabel: { color: '#a3b1cc', fontSize: 10 },
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: { color: '#8da4c9', fontSize: 9, rotate: 30 },
       },
       yAxis: {
         type: 'value',
         axisLine: { show: false },
         axisTick: { show: false },
-        splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } },
-        axisLabel: { color: '#a3b1cc', fontSize: 10 },
+        splitLine: { lineStyle: { color: 'rgba(79,172,254,0.06)' } },
+        axisLabel: { color: '#4a6180', fontSize: 9 },
       },
-      series: [
-        {
-          type: 'bar',
-          data: data.values.map((v) => ({
-            value: v,
-            itemStyle: {
-              borderRadius: [4, 4, 0, 0],
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                { offset: 0, color: '#00d4ff' },
-                { offset: 1, color: 'rgba(0,212,255,0.2)' },
-              ]),
-            },
-          })),
-          barWidth: '40%',
-          label: {
-            show: true,
-            position: 'top',
-            color: '#a3b1cc',
-            fontSize: 10,
+      series: [{
+        type: 'bar',
+        data: data.values.map((v) => ({
+          value: v,
+          itemStyle: {
+            borderRadius: [3, 3, 0, 0],
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: '#4facfe' },
+              { offset: 1, color: 'rgba(79,172,254,0.15)' },
+            ]),
           },
-        },
-      ],
+        })),
+        barWidth: '40%',
+      }],
     });
   }, [data]);
 
   return (
     <Card title="分类统计" loading={loading} error={error}>
-      <div ref={chartRef} className={styles.chart} style={{ height }} />
+      <div ref={chartRef} className={styles.chart} />
     </Card>
   );
 }

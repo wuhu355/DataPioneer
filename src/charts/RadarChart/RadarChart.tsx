@@ -2,7 +2,6 @@ import { useRef, useEffect } from 'react';
 import * as echarts from 'echarts';
 import type { EChartsType } from 'echarts';
 import { Card } from '@/components/Card';
-import { CHART_COLORS } from '@/types/chart';
 import type { BaseChartProps, RadarData } from '@/types';
 import styles from './RadarChart.module.css';
 
@@ -10,7 +9,6 @@ export function RadarChart({
   data,
   loading = false,
   error = null,
-  height = 280,
 }: BaseChartProps<RadarData>) {
   const chartRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<EChartsType | null>(null);
@@ -24,7 +22,6 @@ export function RadarChart({
     return () => {
       window.removeEventListener('resize', onResize);
       instance.dispose();
-      instanceRef.current = null;
     };
   }, []);
 
@@ -32,51 +29,35 @@ export function RadarChart({
     if (!instanceRef.current || !data) return;
 
     instanceRef.current.setOption({
-      color: CHART_COLORS,
+      color: ['#4facfe'],
       backgroundColor: 'transparent',
-      tooltip: {
-        trigger: 'item',
-        backgroundColor: 'rgba(6, 30, 93, 0.9)',
-        borderColor: 'rgba(0, 212, 255, 0.3)',
-        textStyle: { color: '#fff', fontSize: 12 },
-      },
-      legend: {
-        bottom: 0,
-        textStyle: { color: '#a3b1cc', fontSize: 11 },
-        data: data.series.map((s) => s.name),
-      },
       radar: {
-        center: ['50%', '45%'],
+        center: ['50%', '48%'],
         radius: '60%',
         indicator: data.indicators,
-        axisName: { color: '#a3b1cc', fontSize: 11 },
+        axisName: { color: '#8da4c9', fontSize: 10 },
         splitArea: {
-          areaStyle: {
-            color: ['rgba(0, 212, 255, 0.02)', 'rgba(0, 212, 255, 0.04)'],
-          },
+          areaStyle: { color: ['rgba(79,172,254,0.02)', 'rgba(79,172,254,0.04)'] },
         },
-        splitLine: {
-          lineStyle: { color: 'rgba(0, 212, 255, 0.15)' },
-        },
-        axisLine: {
-          lineStyle: { color: 'rgba(0, 212, 255, 0.2)' },
-        },
+        splitLine: { lineStyle: { color: 'rgba(79,172,254,0.1)' } },
+        axisLine: { lineStyle: { color: 'rgba(79,172,254,0.15)' } },
       },
       series: data.series.map((s) => ({
         name: s.name,
         type: 'radar',
         data: [{ value: s.data, name: s.name }],
-        areaStyle: { opacity: 0.15 },
-        lineStyle: { width: 2 },
+        areaStyle: { color: 'rgba(79,172,254,0.12)' },
+        lineStyle: { color: '#4facfe', width: 2 },
         symbol: 'circle',
         symbolSize: 4,
+        itemStyle: { color: '#4facfe' },
       })),
     });
   }, [data]);
 
   return (
     <Card title="能力雷达" loading={loading} error={error}>
-      <div ref={chartRef} className={styles.chart} style={{ height }} />
+      <div ref={chartRef} className={styles.chart} />
     </Card>
   );
 }

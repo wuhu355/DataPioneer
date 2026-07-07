@@ -1,0 +1,25 @@
+/* ========================================
+   Theme 1: 深蓝科技风（当前默认）
+   风格：冷峻、专业、金融/政务大屏常见
+   ======================================== */
+:root {
+  --color-bg-primary: #0a0e27;
+  --color-bg-secondary: rgba(6, 30, 93, 0.4);
+  --color-bg-card: rgba(6, 30, 93, 0.3);
+  --color-border: rgba(0, 212, 255, 0.15);
+  --color-border-active: rgba(0, 212, 255, 0.4);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3b1cc;
+  --color-text-muted: #5a6a8a;
+  --color-accent: #00d4ff;
+  --color-accent-secondary: #7b2fff;
+  --color-success: #00e396;
+  --color-warning: #feb019;
+  --color-danger: #ff6b6b;
+  --chart-color-1: #00d4ff;
+  --chart-color-2: #7b2fff;
+  --chart-color-3: #ff6b6b;
+  --chart-color-4: #00e396;
+  --chart-color-5: #feb019;
+  --chart-color-6: #ff4081;
+}

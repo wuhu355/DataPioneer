@@ -1,4 +1,4 @@
-import type { IDataAdapter } from '../types';
+import type { IDataAdapter, AdapterFetchParams } from '../types';
 import {
   mockOverviewData,
   mockTrendData,
@@ -9,16 +9,12 @@ import {
   mockRadarData,
 } from './chartData';
 
-/**
- * Mock data adapter — returns realistic hardcoded data with artificial delay.
- * Used during development and demo mode.
- */
 export class MockAdapter implements IDataAdapter {
-  fetchOverview = mockOverviewData;
-  fetchTrendData = mockTrendData;
-  fetchDistribution = mockDistributionData;
-  fetchMapData = mockMapData;
-  fetchRankings = mockRankings;
-  fetchGaugeData = mockGaugeData;
-  fetchRadarData = mockRadarData;
+  fetchOverview = (params: AdapterFetchParams) => mockOverviewData(params);
+  fetchTrendData = (params: AdapterFetchParams) => mockTrendData(params);
+  fetchDistribution = (params: AdapterFetchParams) => mockDistributionData(params);
+  fetchMapData = (params: AdapterFetchParams) => mockMapData(params);
+  fetchRankings = (params: AdapterFetchParams) => mockRankings(params);
+  fetchGaugeData = (params: AdapterFetchParams) => mockGaugeData(params);
+  fetchRadarData = (params: AdapterFetchParams) => mockRadarData(params);
 }

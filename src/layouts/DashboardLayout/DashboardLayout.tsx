@@ -9,14 +9,16 @@ interface DashboardLayoutProps {
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   useScreenScale();
-  const screenScale = useUIStore((s) => s.screenScale);
+  const { scale, offsetX, offsetY } = useUIStore((s) => s.screenScale);
 
   return (
     <div className={styles.viewport}>
       <div
         className={styles.canvas}
         style={{
-          transform: `scale(${screenScale.scale}) translate(${screenScale.offsetX}px, ${screenScale.offsetY}px)`,
+          transform: `scale(${scale})`,
+          left: `${offsetX}px`,
+          top: `${offsetY}px`,
         }}
       >
         {children}

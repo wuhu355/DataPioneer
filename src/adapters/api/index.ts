@@ -1,4 +1,4 @@
-import type { IDataAdapter } from '../types';
+import type { IDataAdapter, AdapterFetchParams } from '../types';
 import type {
   OverviewData,
   TrendData,
@@ -9,46 +9,33 @@ import type {
   RadarData,
 } from '@/types/dashboard';
 
-/**
- * API data adapter — stub implementation.
- *
- * When switching to real API, replace each method's body with an actual
- * fetch call. Example:
- *   return fetch('/api/overview').then(r => r.json());
- */
 export class ApiAdapter implements IDataAdapter {
   private notImplemented(method: string): never {
     throw new Error(
       `[ApiAdapter] ${method}() is not implemented yet. ` +
-        `Update src/adapters/api/dashboard.api.ts with your API endpoint.`,
+        `Update src/adapters/api/ with your API endpoints.`
     );
   }
 
-  async fetchOverview(): Promise<OverviewData> {
+  async fetchOverview(_params: AdapterFetchParams): Promise<OverviewData> {
     this.notImplemented('fetchOverview');
   }
-
-  async fetchTrendData(): Promise<TrendData> {
+  async fetchTrendData(_params: AdapterFetchParams): Promise<TrendData> {
     this.notImplemented('fetchTrendData');
   }
-
-  async fetchDistribution(): Promise<DistributionItem[]> {
+  async fetchDistribution(_params: AdapterFetchParams): Promise<DistributionItem[]> {
     this.notImplemented('fetchDistribution');
   }
-
-  async fetchMapData(): Promise<MapDataItem[]> {
+  async fetchMapData(_params: AdapterFetchParams): Promise<MapDataItem[]> {
     this.notImplemented('fetchMapData');
   }
-
-  async fetchRankings(): Promise<RankingItem[]> {
+  async fetchRankings(_params: AdapterFetchParams): Promise<RankingItem[]> {
     this.notImplemented('fetchRankings');
   }
-
-  async fetchGaugeData(): Promise<GaugeData> {
+  async fetchGaugeData(_params: AdapterFetchParams): Promise<GaugeData> {
     this.notImplemented('fetchGaugeData');
   }
-
-  async fetchRadarData(): Promise<RadarData> {
+  async fetchRadarData(_params: AdapterFetchParams): Promise<RadarData> {
     this.notImplemented('fetchRadarData');
   }
 }

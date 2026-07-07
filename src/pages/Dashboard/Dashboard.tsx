@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { Header } from '@/components/Header';
 import { StatTile } from '@/components/StatTile';
@@ -10,6 +10,7 @@ import { MapChart } from '@/charts/MapChart';
 import { GaugeChart } from '@/charts/GaugeChart';
 import { RadarChart } from '@/charts/RadarChart';
 import { useDashboardStore } from '@/stores/useDashboardStore';
+import { useUIStore } from '@/stores/useUIStore';
 import { logger, initLogger } from '@/utils/logger';
 import styles from './Dashboard.module.css';
 
@@ -24,13 +25,19 @@ export function Dashboard() {
   const isLoading = useDashboardStore((s) => s.isLoading);
   const fetchAll = useDashboardStore((s) => s.fetchAll);
 
-  useEffect(() => {
-    initLogger();
-    logger.info('dashboard', 'Dashboard mounted — fetching all data');
-    fetchAll();
-  }, [fetchAll]);
+  const timeRange = useUIStore((s) => s.timeRange);
+  const isFirstMount = useRef(true);
 
-  // Build ranking data for bar chart
+  // Fetch on mount and whenever timeRange changes
+  useEffect(() => {
+    if (isFirstMount.current) {
+      initLogger();
+      isFirstMount.current = false;
+    }
+    logger.info('dashboard', `Time range changed to: ${timeRange} — refetching data`);
+    fetchAll(timeRange);
+  }, [timeRange, fetchAll]);
+
   const rankingBarData =
     rankings.data && !rankings.loading
       ? {
@@ -42,17 +49,14 @@ export function Dashboard() {
   return (
     <DashboardLayout>
       <div className={styles.dashboard}>
-        {/* Top Header */}
         <div className={styles.header}>
           <Header />
         </div>
 
-        {/* Time Picker */}
         <div className={styles.datePicker}>
           <DatePicker />
         </div>
 
-        {/* KPI Stat Tiles */}
         <div className={styles.stats}>
           <StatTile
             label="总用户数"
@@ -86,63 +90,35 @@ export function Dashboard() {
           />
         </div>
 
-        {/* Charts Grid */}
         <div className={styles.chartsGrid}>
-          {/* Left column */}
           <div className={styles.trendChart}>
-            <LineChart data={trend.data} loading={trend.loading} error={trend.error} height={300} />
+            <LineChart data={trend.data} loading={trend.loading} error={trend.error} />
           </div>
-
-          {/* Center — Map */}
           <div className={styles.mapChart}>
-            <MapChart
-              data={mapData.data}
-              loading={mapData.loading}
-              error={mapData.error}
-              height={380}
-            />
+            <MapChart data={mapData.data} loading={mapData.loading} error={mapData.error} />
           </div>
-
-          {/* Right column */}
           <div className={styles.pieChart}>
             <PieChart
               data={distribution.data}
               loading={distribution.loading}
               error={distribution.error}
-              height={300}
             />
           </div>
-
-          {/* Bottom row charts */}
           <div className={styles.barChart}>
             <BarChart
               data={rankingBarData}
               loading={rankings.loading}
               error={rankings.error}
-              height={260}
             />
           </div>
-
           <div className={styles.gaugeChart}>
-            <GaugeChart
-              data={gauge.data}
-              loading={gauge.loading}
-              error={gauge.error}
-              height={240}
-            />
+            <GaugeChart data={gauge.data} loading={gauge.loading} error={gauge.error} />
           </div>
-
           <div className={styles.radarChart}>
-            <RadarChart
-              data={radar.data}
-              loading={radar.loading}
-              error={radar.error}
-              height={260}
-            />
+            <RadarChart data={radar.data} loading={radar.loading} error={radar.error} />
           </div>
         </div>
 
-        {/* Loading overlay */}
         {isLoading && (
           <div className={styles.loadingOverlay}>
             <div className={styles.loadingSpinner} />

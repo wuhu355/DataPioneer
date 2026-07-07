@@ -1,10 +1,17 @@
 .card {
   background: var(--color-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
 }
 
 .header {
@@ -19,8 +26,9 @@
   display: block;
   width: 4px;
   height: 16px;
-  background: linear-gradient(to bottom, var(--color-accent), var(--color-accent-secondary));
+  background: var(--gradient-primary);
   border-radius: 2px;
+  animation: breathe 3s ease-in-out infinite;
 }
 
 .title {
@@ -58,4 +66,9 @@
 .emptyText {
   color: var(--color-text-muted);
   font-size: 14px;
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }

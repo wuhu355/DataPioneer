@@ -31,7 +31,7 @@
   left: 50% !important;
   transform: translate(-50%, -50%) scale(1.1) !important;
   z-index: 100 !important;
-  width: 35vw;
+  width: 28vw;
   border-color: var(--card-accent);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.35);
   transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);

@@ -125,6 +125,17 @@
   min-height: 0;
 }
 
+.bodyNoPointer {
+  pointer-events: none;
+}
+
+.closeHint {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-left: auto;
+  margin-right: 8px;
+}
+
 .status {
   display: flex;
   flex-direction: column;

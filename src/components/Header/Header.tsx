@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { formatDate } from '@/utils/formatters';
 import styles from './Header.module.css';
+
+const DAY_NAMES = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
 interface HeaderProps {
   title?: string;
@@ -12,39 +14,48 @@ export function Header({
   subtitle = 'Data Visualization Dashboard',
 }: HeaderProps) {
   const [time, setTime] = useState(new Date());
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
+  useEffect(() => {
+    const onFsChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onFsChange);
+    return () => document.removeEventListener('fullscreenchange', onFsChange);
+  }, []);
+
+  const toggleFullscreen = useCallback(() => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(() => {});
+    } else {
+      document.exitFullscreen();
+    }
+  }, []);
+
   return (
     <header className={styles.header}>
+      {/* Left */}
       <div className={styles.left}>
-        <div className={styles.logo}>
-          <div className={styles.logoIcon}>
-            <span className={styles.logoDot} />
-          </div>
-        </div>
-        <div>
-          <h1 className={styles.title}>{title}</h1>
-          <p className={styles.subtitle}>{subtitle}</p>
-        </div>
+        <button className={styles.fsBtn} onClick={toggleFullscreen} title="全屏切换">
+          {isFullscreen ? '⊠' : '⊞'}
+        </button>
       </div>
 
+      {/* Center */}
       <div className={styles.center}>
-        <div className={styles.divider}>
-          <span className={styles.dividerLine} />
-          <div className={styles.dividerDiamond} />
-          <span className={styles.dividerLine} />
-        </div>
+        <h1 className={styles.title}>{title}</h1>
+        <p className={styles.subtitle}>{subtitle}</p>
       </div>
 
+      {/* Right */}
       <div className={styles.right}>
-        <div className={styles.clock}>
-          <span className={styles.clockTime}>{formatDate(time, 'HH:mm:ss')}</span>
-          <span className={styles.clockDate}>{formatDate(time, 'YYYY-MM-DD')}</span>
-        </div>
+        <span className={styles.clockTime}>{formatDate(time, 'HH:mm:ss')}</span>
+        <span className={styles.clockDate}>
+          {formatDate(time, 'YYYY-MM-DD')} {DAY_NAMES[time.getDay()]}
+        </span>
       </div>
     </header>
   );

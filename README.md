@@ -15,14 +15,8 @@
 ## 预览
 
 <p align="center">
-  <img src="preview.svg" alt="DataPioneer Preview" width="100%">
+  <img src="preview.png" alt="DataPioneer Preview" width="100%">
 </p>
-
-> 运行 `npm run dev` 查看实际效果。截图可用 Playwright 生成：
-> ```bash
-> npx playwright install chromium
-> npx playwright screenshot --viewport-size=1920,1080 http://localhost:3000 preview.png
-> ```
 
 ## 技术栈
 

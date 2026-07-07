@@ -34,13 +34,22 @@ export function Card({
   const isPinned = panelId ? focusedPanel === panelId : false;
   const isDimmed = !!focusedPanel && !!panelId && focusedPanel !== panelId;
 
-  const [portalShow, setPortalShow] = useState(false);
+  const [portalMounted, setPortalMounted] = useState(false);
+  const [portalReady, setPortalReady] = useState(false);
 
   useEffect(() => {
     if (isPinned) {
-      setPortalShow(true);
+      setPortalMounted(true);
+      // Double rAF: wait for portal DOM layout before rendering children
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setPortalReady(true);
+        });
+      });
     } else {
-      setPortalShow(false);
+      setPortalReady(false);
+      const t = setTimeout(() => setPortalMounted(false), 200);
+      return () => clearTimeout(t);
     }
   }, [isPinned]);
 
@@ -50,7 +59,7 @@ export function Card({
 
   return (
     <>
-      {portalShow &&
+      {portalMounted &&
         createPortal(
           <div
             className={`${styles.card} ${styles.cardPortal}`}
@@ -66,19 +75,23 @@ export function Card({
               </div>
             )}
             <div className={`${styles.body} ${styles.bodyNoPointer}`}>
-              {loading && <Loading />}
-              {!loading && error && (
-                <div className={styles.status}>
-                  <span className={styles.errorIcon}>⚠</span>
-                  <p className={styles.errorText}>{error}</p>
-                </div>
+              {portalReady && (
+                <>
+                  {loading && <Loading />}
+                  {!loading && error && (
+                    <div className={styles.status}>
+                      <span className={styles.errorIcon}>⚠</span>
+                      <p className={styles.errorText}>{error}</p>
+                    </div>
+                  )}
+                  {!loading && !error && empty && (
+                    <div className={styles.status}>
+                      <p className={styles.emptyText}>{emptyText}</p>
+                    </div>
+                  )}
+                  {!loading && !error && !empty && children}
+                </>
               )}
-              {!loading && !error && empty && (
-                <div className={styles.status}>
-                  <p className={styles.emptyText}>{emptyText}</p>
-                </div>
-              )}
-              {!loading && !error && !empty && children}
             </div>
           </div>,
           document.body,

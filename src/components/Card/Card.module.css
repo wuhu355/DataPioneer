@@ -11,9 +11,7 @@
   height: 100%;
   min-height: 0;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease,
-    top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-    left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /* ── Interactive: hover scale + clickable cursor ── */

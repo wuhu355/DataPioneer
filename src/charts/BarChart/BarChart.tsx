@@ -22,9 +22,14 @@ export function BarChart({
     if (!chartRef.current) return;
     const instance = echarts.init(chartRef.current);
     instanceRef.current = instance;
-    const observer = new ResizeObserver(() => instance.resize());
+    let raf = 0;
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => instance.resize());
+    });
     observer.observe(chartRef.current);
     return () => {
+      cancelAnimationFrame(raf);
       observer.disconnect();
       instance.dispose();
     };

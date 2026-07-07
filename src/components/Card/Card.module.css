@@ -19,27 +19,47 @@
   cursor: pointer;
 }
 
-.cardInteractive:not(.cardPinned):hover {
+.cardInteractive:hover {
   border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
   transform: scale(1.02);
   z-index: 10;
 }
 
-/* ── Pinned: scale up in place + stronger glow ── */
-.cardPinned {
-  transform: scale(1.05);
-  z-index: 20;
+/* ── Portal: fullscreen overlay when pinned ── */
+.cardPortal {
+  position: fixed;
+  top: 12%;
+  left: 18%;
+  right: 18%;
+  bottom: 12%;
+  z-index: 1000;
+  width: auto;
+  height: auto;
   border-color: var(--border-card-active);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.3);
+  animation: portalIn 0.25s ease;
 }
 
-/* ── Dimmed: other cards when one is pinned ── */
-.cardDimmed {
-  opacity: 0.45;
-  filter: brightness(0.6);
-  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.3s ease;
-  pointer-events: auto;
+/* ── Hidden: original grid card when portal is active ── */
+.cardHidden {
+  visibility: hidden;
+}
+
+/* ── Dimmed: dark overlay on non-pinned cards ── */
+.cardDimmed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  border-radius: inherit;
+  background: rgba(10, 22, 40, 0.55);
+}
+
+@keyframes portalIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 .card:hover {

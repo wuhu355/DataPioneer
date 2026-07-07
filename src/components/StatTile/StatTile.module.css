@@ -18,24 +18,46 @@
   cursor: pointer;
 }
 
-.tileInteractive:not(.tilePinned):hover {
+.tileInteractive:hover {
   border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
   transform: scale(1.03);
   z-index: 10;
 }
 
-.tilePinned {
-  transform: scale(1.08);
-  z-index: 20;
+/* ── Portal: overlay when pinned ── */
+.tilePortal {
+  position: fixed;
+  top: 30%;
+  left: 32%;
+  right: 32%;
+  bottom: 35%;
+  z-index: 1000;
+  width: auto;
+  height: auto;
   border-color: var(--card-accent);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.35);
+  animation: tileIn 0.25s ease;
 }
 
-.tileDimmed {
-  opacity: 0.4;
-  filter: brightness(0.55);
-  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.3s ease;
+.tileHidden {
+  visibility: hidden;
+}
+
+/* ── Dimmed: dark overlay ── */
+.tileDimmed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  border-radius: inherit;
+  background: rgba(10, 22, 40, 0.55);
+}
+
+@keyframes tileIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* ── 隐藏光条，激活时亮起 ── */

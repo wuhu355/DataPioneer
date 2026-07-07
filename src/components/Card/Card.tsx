@@ -32,6 +32,7 @@ export function Card({
   const toggleFocusedPanel = useUIStore((s) => s.toggleFocusedPanel);
 
   const isPinned = panelId ? focusedPanel === panelId : false;
+  const isDimmed = !!focusedPanel && !!panelId && focusedPanel !== panelId;
 
   const handleClick = () => {
     if (panelId) toggleFocusedPanel(panelId);
@@ -39,7 +40,7 @@ export function Card({
 
   return (
     <div
-      className={`${styles.card} ${active ? styles.cardActive : ''} ${isPinned ? styles.cardPinned : ''} ${panelId ? styles.cardInteractive : ''} ${className}`}
+      className={`${styles.card} ${active ? styles.cardActive : ''} ${isPinned ? styles.cardPinned : ''} ${isDimmed ? styles.cardDimmed : ''} ${panelId ? styles.cardInteractive : ''} ${className}`}
       onClick={handleClick}
     >
       {title && (

@@ -34,6 +34,14 @@
   box-shadow: var(--shadow-card-active);
 }
 
+/* ── Dimmed: other cards when one is pinned ── */
+.cardDimmed {
+  opacity: 0.45;
+  filter: brightness(0.6);
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.3s ease;
+  pointer-events: auto;
+}
+
 .card:hover {
   box-shadow: var(--shadow-card-hover);
 }

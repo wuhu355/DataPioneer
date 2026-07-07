@@ -30,6 +30,7 @@ export function StatTile({
   const focusedPanel = useUIStore((s) => s.focusedPanel);
   const toggleFocusedPanel = useUIStore((s) => s.toggleFocusedPanel);
   const isPinned = panelId ? focusedPanel === panelId : false;
+  const isDimmed = !!focusedPanel && !!panelId && focusedPanel !== panelId;
 
   const formattedValue = ((): string => {
     switch (format) {
@@ -46,7 +47,7 @@ export function StatTile({
 
   return (
     <div
-      className={`${styles.tile} ${active ? styles.tileActive : ''} ${isPinned ? styles.tilePinned : ''} ${panelId ? styles.tileInteractive : ''}`}
+      className={`${styles.tile} ${active ? styles.tileActive : ''} ${isPinned ? styles.tilePinned : ''} ${isDimmed ? styles.tileDimmed : ''} ${panelId ? styles.tileInteractive : ''}`}
       style={color ? { '--card-accent': color } as React.CSSProperties : undefined}
       onClick={() => panelId && toggleFocusedPanel(panelId)}
     >

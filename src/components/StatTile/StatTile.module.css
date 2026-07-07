@@ -28,8 +28,14 @@
 .tilePinned {
   transform: scale(1.08) !important;
   z-index: 20 !important;
-  border-color: var(--border-card-active);
-  box-shadow: var(--shadow-card-active);
+  border-color: var(--card-accent);
+  box-shadow: 0 0 50px rgba(79, 172, 254, 0.3);
+}
+
+.tileDimmed {
+  opacity: 0.4;
+  filter: brightness(0.55);
+  transition: opacity 0.35s ease, filter 0.35s ease, transform 0.3s ease;
 }
 
 /* ── 隐藏光条，激活时亮起 ── */

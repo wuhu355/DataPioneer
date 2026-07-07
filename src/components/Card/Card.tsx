@@ -4,6 +4,7 @@ import styles from './Card.module.css';
 
 interface CardProps {
   title?: string;
+  icon?: string;
   children: ReactNode;
   className?: string;
   loading?: boolean;
@@ -15,6 +16,7 @@ interface CardProps {
 
 export function Card({
   title,
+  icon,
   children,
   className = '',
   loading = false,
@@ -27,8 +29,10 @@ export function Card({
     <div className={`${styles.card} ${active ? styles.cardActive : ''} ${className}`}>
       {title && (
         <div className={styles.header}>
-          <span className={styles.accent} />
+          <span className={styles.dot} />
+          {icon && <span className={styles.icon}>{icon}</span>}
           <h3 className={styles.title}>{title}</h3>
+          <span className={styles.dotRight} />
         </div>
       )}
       <div className={styles.body}>

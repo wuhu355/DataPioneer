@@ -69,7 +69,7 @@ export function GaugeChart({
   }, [data]);
 
   return (
-    <Card title="仪表盘" loading={loading} error={error}>
+    <Card title="仪表盘" icon="🎯" loading={loading} error={error}>
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

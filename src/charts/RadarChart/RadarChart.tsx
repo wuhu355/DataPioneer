@@ -56,7 +56,7 @@ export function RadarChart({
   }, [data]);
 
   return (
-    <Card title="能力雷达" loading={loading} error={error}>
+    <Card title="能力雷达" icon="📡" loading={loading} error={error}>
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

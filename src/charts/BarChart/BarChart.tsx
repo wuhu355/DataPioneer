@@ -74,7 +74,7 @@ export function BarChart({
   }, [data]);
 
   return (
-    <Card title="分类统计" loading={loading} error={error}>
+    <Card title="分类统计" icon="📊" loading={loading} error={error}>
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

@@ -71,7 +71,7 @@ export function PieChart({
   }, [data]);
 
   return (
-    <Card title="数据分布" loading={loading} error={error}>
+    <Card title="数据分布" icon="🍩" loading={loading} error={error}>
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

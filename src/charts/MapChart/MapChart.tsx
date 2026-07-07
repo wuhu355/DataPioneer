@@ -136,7 +136,7 @@ export function MapChart({
   }, [data]);
 
   return (
-    <Card title="全国分布" loading={loading} error={error}>
+    <Card title="全国分布" icon="🗺️" loading={loading} error={error}>
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

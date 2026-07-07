@@ -29,4 +29,3 @@ Thumbs.db
 *.tsbuildinfo
 *.d.ts
 !src/vite-env.d.ts
-]

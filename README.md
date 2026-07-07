@@ -3,7 +3,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/DataPioneer-数据先锋大屏-blue" alt="DataPioneer">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/version-0.1.0-orange" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.2.0-orange" alt="Version">
 </p>
 
 <p align="center">
@@ -83,14 +83,29 @@ src/
 
 ## 设计体系
 
+> 完整设计规范见 [design.md](design.md)
+
 ### 暗夜数据美学
 
-- **粒子背景**: 80 个随机半径粒子 + 距离连线，营造数据流动感
+- **粒子背景**: 80 个粒子随机半径 1-3px，距离连线（`alpha = 0.02 + ratio × 0.18`）
 - **毛玻璃**: `backdrop-filter: blur(12px)` 半透明卡片
-- **去框化边框**: 15% 透明蓝线 → 悬停 30% → 激活顶部光条
+- **去框化边框**: 默认 15% 透明 → 悬停 30% + 光晕增强 → 激活顶部 3px 渐变光条
 - **蓝紫渐变**: `#4facfe → #a18cd1` 贯穿标题、图表、KPI
-- **14px 圆角**: 柔和统一
+- **14px 圆角**: 统一柔和
 - **1920×1080 等比缩放**: `transform: scale()` 适配任意分辨率
+
+## 交互特性
+
+| 交互 | 效果 |
+|------|------|
+| 悬停卡片 | `scale(1.02)` 微微放大 + 边框变亮 |
+| 点击卡片 | 飞入屏幕中央 + 自适应放大 |
+| 聚光灯 | 其余卡片自动变暗（`::after` 遮罩） |
+| 再点关闭 | 弹回原位，全部恢复 |
+| 单焦点 | 同时只允许放大一个面板 |
+| 全屏按钮 | Header 左侧 ⊞，一键全屏 |
+
+飞入中央算法：`getBoundingClientRect()` 获取卡片位置 → 计算到视口中心的偏移 → `transform: translate(cx, cy) scale(s)`，不移动 DOM、不卸载图表。
 
 ### 五套可选主题
 

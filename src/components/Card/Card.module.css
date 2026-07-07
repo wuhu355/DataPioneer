@@ -26,15 +26,10 @@
   z-index: 10;
 }
 
-/* ── Pinned: fly to center + stronger glow ── */
+/* ── Pinned: scale up in place + stronger glow ── */
 .cardPinned {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.05);
-  z-index: 100;
-  width: 45vw;
-  height: 45vw;
+  transform: scale(1.05);
+  z-index: 20;
   border-color: var(--border-card-active);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.3);
 }

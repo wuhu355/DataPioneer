@@ -48,11 +48,11 @@ export function Card({
           <span className={styles.dot} />
           {icon && <span className={styles.icon}>{icon}</span>}
           <h3 className={styles.title}>{title}</h3>
-          {isPinned && <span className={styles.closeHint}>点击任意位置关闭</span>}
+          {isPinned && <span className={styles.closeHint}>已锁定</span>}
           <span className={styles.dotRight} />
         </div>
       )}
-      <div className={`${styles.body} ${isPinned ? styles.bodyNoPointer : ''}`}>
+      <div className={styles.body}>
         {loading && <Loading />}
         {!loading && error && (
           <div className={styles.status}>

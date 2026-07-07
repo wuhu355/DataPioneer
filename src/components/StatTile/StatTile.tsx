@@ -54,9 +54,9 @@ export function StatTile({
       <div className={styles.header}>
         <span className={styles.icon}>{icon}</span>
         <span className={styles.label}>{label}</span>
-        {isPinned && <span className={styles.closeHint}>点击关闭</span>}
+        {isPinned && <span className={styles.closeHint}>已锁定</span>}
       </div>
-      <div className={`${styles.body} ${isPinned ? styles.bodyNoPointer : ''}`}>
+      <div className={styles.body}>
         <span className={styles.value}>{formattedValue}</span>
         {unit && <span className={styles.unit}>{unit}</span>}
       </div>

@@ -47,40 +47,40 @@
 .header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
+  gap: 12px;
+  padding: 14px 20px;
   border-bottom: 1px solid var(--border-card);
 }
 
 .dot {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-accent);
-  box-shadow: 0 0 6px var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
   flex-shrink: 0;
   animation: breathe 2.5s ease-in-out infinite;
 }
 
 .icon {
-  font-size: 15px;
+  font-size: 18px;
   flex-shrink: 0;
 }
 
 .title {
   flex: 1;
   color: var(--color-text-primary);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 .dotRight {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--color-accent-secondary);
-  box-shadow: 0 0 6px var(--color-accent-secondary);
+  box-shadow: 0 0 8px var(--color-accent-secondary);
   flex-shrink: 0;
   opacity: 0.6;
 }

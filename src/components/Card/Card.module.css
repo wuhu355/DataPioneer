@@ -26,24 +26,11 @@
   z-index: 10;
 }
 
-/* ── Portal: fullscreen overlay when pinned ── */
-.cardPortal {
-  position: fixed;
-  top: 12%;
-  left: 18%;
-  right: 18%;
-  bottom: 12%;
-  z-index: 1000;
-  width: auto;
-  height: auto;
+/* ── Pinned: glow (position + scale via inline JS) ── */
+.cardPinned {
   border-color: var(--border-card-active);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.3);
-  animation: portalIn 0.25s ease;
-}
-
-/* ── Hidden: original grid card when portal is active ── */
-.cardHidden {
-  visibility: hidden;
+  transition: none;
 }
 
 /* ── Dimmed: dark overlay on non-pinned cards ── */

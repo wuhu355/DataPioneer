@@ -25,23 +25,11 @@
   z-index: 10;
 }
 
-/* ── Portal: overlay when pinned ── */
-.tilePortal {
-  position: fixed;
-  top: 30%;
-  left: 32%;
-  right: 32%;
-  bottom: 35%;
-  z-index: 1000;
-  width: auto;
-  height: auto;
+/* ── Pinned: glow (position + scale via inline JS) ── */
+.tilePinned {
   border-color: var(--card-accent);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.35);
-  animation: tileIn 0.25s ease;
-}
-
-.tileHidden {
-  visibility: hidden;
+  transition: none;
 }
 
 /* ── Dimmed: dark overlay ── */

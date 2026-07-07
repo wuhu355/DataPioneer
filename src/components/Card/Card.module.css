@@ -11,11 +11,30 @@
   height: 100%;
   min-height: 0;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Interactive: hover scale + clickable cursor ── */
+.cardInteractive {
+  cursor: pointer;
+}
+
+.cardInteractive:hover {
+  border-color: var(--border-card-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+/* ── Pinned: locked scale + stronger glow ── */
+.cardPinned {
+  transform: scale(1.05) !important;
+  z-index: 20 !important;
+  border-color: var(--border-card-active);
+  box-shadow: var(--shadow-card-active);
 }
 
 .card:hover {
-  border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
 }
 

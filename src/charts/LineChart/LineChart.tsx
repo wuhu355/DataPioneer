@@ -76,7 +76,7 @@ export function LineChart({
   }, [data]);
 
   return (
-    <Card title="趋势分析" icon="📈" loading={loading} error={error}>
+    <Card title="趋势分析" icon="📈" loading={loading} error={error} panelId="trend">
       <div ref={chartRef} className={styles.chart} />
     </Card>
   );

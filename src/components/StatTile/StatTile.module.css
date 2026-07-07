@@ -11,12 +11,25 @@
   flex-direction: column;
   gap: 6px;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.tile:hover {
+.tileInteractive {
+  cursor: pointer;
+}
+
+.tileInteractive:hover {
   border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
+  transform: scale(1.03);
+  z-index: 10;
+}
+
+.tilePinned {
+  transform: scale(1.08) !important;
+  z-index: 20 !important;
+  border-color: var(--border-card-active);
+  box-shadow: var(--shadow-card-active);
 }
 
 /* ── 隐藏光条，激活时亮起 ── */

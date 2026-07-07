@@ -64,6 +64,7 @@ export function Dashboard() {
             icon="👥"
             color="#00d4ff"
             growth={overview.data?.userGrowth}
+            panelId="users"
           />
           <StatTile
             label="总订单数"
@@ -71,6 +72,7 @@ export function Dashboard() {
             icon="📦"
             color="#7b2fff"
             growth={overview.data?.orderGrowth}
+            panelId="orders"
           />
           <StatTile
             label="总收入"
@@ -79,6 +81,7 @@ export function Dashboard() {
             color="#00e396"
             growth={overview.data?.revenueGrowth}
             format="compact"
+            panelId="revenue"
           />
           <StatTile
             label="转化率"
@@ -87,6 +90,7 @@ export function Dashboard() {
             color="#feb019"
             growth={overview.data?.conversionGrowth}
             format="percent"
+            panelId="conversion"
           />
         </div>
 

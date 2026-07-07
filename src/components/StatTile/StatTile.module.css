@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 
-.tileInteractive:hover {
+.tileInteractive:not(.tilePinned):hover {
   border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
   transform: scale(1.03);
@@ -26,10 +26,15 @@
 }
 
 .tilePinned {
-  transform: scale(1.08) !important;
-  z-index: 20 !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(1.1) !important;
+  z-index: 100 !important;
+  width: 35vw;
   border-color: var(--card-accent);
-  box-shadow: 0 0 50px rgba(79, 172, 254, 0.3);
+  box-shadow: 0 0 60px rgba(79, 172, 254, 0.35);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tileDimmed {

@@ -19,19 +19,25 @@
   cursor: pointer;
 }
 
-.cardInteractive:hover {
+.cardInteractive:not(.cardPinned):hover {
   border-color: var(--border-card-hover);
   box-shadow: var(--shadow-card-hover);
   transform: scale(1.02);
   z-index: 10;
 }
 
-/* ── Pinned: locked scale + stronger glow ── */
+/* ── Pinned: fly to center + stronger glow ── */
 .cardPinned {
-  transform: scale(1.05) !important;
-  z-index: 20 !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) scale(1.05) !important;
+  z-index: 100 !important;
+  width: 55vw;
+  height: 50vh;
   border-color: var(--border-card-active);
-  box-shadow: var(--shadow-card-active);
+  box-shadow: 0 0 60px rgba(79, 172, 254, 0.3);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ── Dimmed: other cards when one is pinned ── */

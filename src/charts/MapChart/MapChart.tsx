@@ -11,7 +11,6 @@ export function MapChart({
   data,
   loading = false,
   error = null,
-  height = 400,
 }: BaseChartProps<MapDataItem[]>) {
   const chartRef = useRef<HTMLDivElement>(null);
   const instanceRef = useRef<EChartsType | null>(null);
@@ -138,7 +137,7 @@ export function MapChart({
 
   return (
     <Card title="全国分布" loading={loading} error={error}>
-      <div ref={chartRef} className={styles.chart} style={{ height }} />
+      <div ref={chartRef} className={styles.chart} />
     </Card>
   );
 }

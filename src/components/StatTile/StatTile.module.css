@@ -11,7 +11,9 @@
   flex-direction: column;
   gap: 6px;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease,
+    top 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    left 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tileInteractive {
@@ -26,15 +28,14 @@
 }
 
 .tilePinned {
-  position: fixed !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) scale(1.1) !important;
-  z-index: 100 !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 100;
   width: 28vw;
   border-color: var(--card-accent);
   box-shadow: 0 0 60px rgba(79, 172, 254, 0.35);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .tileDimmed {

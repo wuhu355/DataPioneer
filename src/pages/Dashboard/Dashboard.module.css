@@ -57,18 +57,22 @@
 }
 
 .barChart {
-  grid-column: 1;
+  grid-column: 1 / 3;
   grid-row: 2;
 }
 
-.gaugeChart {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.radarChart {
+.bottomRight {
   grid-column: 3;
   grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.bottomRight > * {
+  flex: 1;
+  min-height: 0;
 }
 
 /* ---- Loading Overlay ---- */

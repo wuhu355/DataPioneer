@@ -2,18 +2,49 @@
   background: rgba(15, 35, 70, 0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(79, 172, 254, 0.12);
-  border-top: 2px solid rgba(79, 172, 254, 0.35);
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
   padding: 14px 18px;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  transition: border-color 0.3s;
+  position: relative;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .tile:hover {
-  border-color: rgba(79, 172, 254, 0.28);
+  border-color: var(--border-card-hover);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ── Active: top gradient bar ── */
+.tileActive {
+  border-color: #a18cd1;
+  box-shadow: var(--shadow-card-active);
+  transform: translateY(-2px);
+}
+
+.tileActive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #4facfe 30%,
+    #a18cd1 70%,
+    transparent 100%
+  );
+  z-index: 2;
+  opacity: 1;
+}
+
+.tileActive:hover {
+  border-color: #a18cd1;
 }
 
 .header {

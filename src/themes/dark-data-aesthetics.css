@@ -9,10 +9,13 @@
   --color-bg-secondary: rgba(15, 35, 70, 0.55);
   --color-bg-card: rgba(15, 35, 70, 0.35);
 
-  /* ── 毛玻璃边框 ── */
-  --color-border: rgba(79, 172, 254, 0.12);
-  --color-border-hover: rgba(79, 172, 254, 0.28);
-  --color-border-active: rgba(79, 172, 254, 0.45);
+  /* ── 去框化边框体系 ── */
+  --border-card: rgba(79, 172, 254, 0.15);
+  --border-card-hover: rgba(79, 172, 254, 0.3);
+  --border-card-active: rgba(79, 172, 254, 0.45);
+  --shadow-card: 0 0 30px rgba(79, 172, 254, 0.1);
+  --shadow-card-hover: 0 0 40px rgba(79, 172, 254, 0.18);
+  --shadow-card-active: 0 0 50px rgba(79, 172, 254, 0.25);
 
   /* ── 文字层级 ── */
   --color-text-primary: #e8f0fe;

@@ -10,6 +10,7 @@ interface CardProps {
   error?: string | null;
   empty?: boolean;
   emptyText?: string;
+  active?: boolean;
 }
 
 export function Card({
@@ -20,9 +21,10 @@ export function Card({
   error = null,
   empty = false,
   emptyText = '暂无数据',
+  active = false,
 }: CardProps) {
   return (
-    <div className={`${styles.card} ${className}`}>
+    <div className={`${styles.card} ${active ? styles.cardActive : ''} ${className}`}>
       {title && (
         <div className={styles.header}>
           <span className={styles.accent} />

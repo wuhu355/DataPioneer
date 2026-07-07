@@ -10,6 +10,7 @@ interface StatTileProps {
   icon?: string;
   color?: string;
   format?: 'number' | 'currency' | 'percent' | 'compact';
+  active?: boolean;
 }
 
 export function StatTile({
@@ -20,6 +21,7 @@ export function StatTile({
   icon = '📊',
   color,
   format = 'compact',
+  active = false,
 }: StatTileProps) {
   const currentValue = useCountUp(value, { duration: 1500 });
 
@@ -37,7 +39,7 @@ export function StatTile({
   const isPositive = growth !== undefined && growth >= 0;
 
   return (
-    <div className={styles.tile} style={color ? { borderTopColor: color } : undefined}>
+    <div className={`${styles.tile} ${active ? styles.tileActive : ''}`} style={color ? { borderTopColor: color } : undefined}>
       <div className={styles.header}>
         <span className={styles.icon}>{icon}</span>
         <span className={styles.label}>{label}</span>

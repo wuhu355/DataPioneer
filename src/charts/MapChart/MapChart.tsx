@@ -19,10 +19,10 @@ export function MapChart({
     if (!chartRef.current) return;
     const instance = echarts.init(chartRef.current);
     instanceRef.current = instance;
-    const onResize = () => instance.resize();
-    window.addEventListener('resize', onResize);
+    const observer = new ResizeObserver(() => instance.resize());
+    observer.observe(chartRef.current);
     return () => {
-      window.removeEventListener('resize', onResize);
+      observer.disconnect();
       instance.dispose();
       instanceRef.current = null;
     };

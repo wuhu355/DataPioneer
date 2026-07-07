@@ -1,0 +1,16 @@
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: var(--color-bg-primary);
+}
+
+.canvas {
+  width: 1920px;
+  height: 1080px;
+  transform-origin: top left;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

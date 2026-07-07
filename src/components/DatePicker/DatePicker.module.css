@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(6, 30, 93, 0.3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.btn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.btn:hover {
+  color: var(--color-accent);
+}
+
+.active {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+}

@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 72px;
+  padding: 0 32px;
+  background: linear-gradient(to bottom, rgba(6, 30, 93, 0.6), rgba(6, 30, 93, 0.1));
+  border-bottom: 1px solid var(--color-border);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  position: relative;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--color-accent);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 212, 255, 0.05);
+}
+
+.logoDot {
+  width: 10px;
+  height: 10px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: 3px;
+  background: linear-gradient(to right, var(--color-text-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dividerLine {
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-accent), transparent);
+}
+
+.dividerDiamond {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px var(--color-accent);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.clockTime {
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Consolas', 'Courier New', monospace;
+  color: var(--color-accent);
+  letter-spacing: 2px;
+}
+
+.clockDate {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}

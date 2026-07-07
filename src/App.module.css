@@ -1,0 +1,16 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg-primary);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+}

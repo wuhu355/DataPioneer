@@ -1,0 +1,96 @@
+/* ========================================
+   DataPioneer - 数据先锋大屏
+   Global Styles & CSS Custom Properties
+   ======================================== */
+
+/* --- CSS Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Design Tokens --- */
+:root {
+  /* Background */
+  --color-bg-primary: #0a0e27;
+  --color-bg-secondary: rgba(6, 30, 93, 0.4);
+  --color-bg-card: rgba(6, 30, 93, 0.3);
+
+  /* Borders */
+  --color-border: rgba(0, 212, 255, 0.15);
+  --color-border-active: rgba(0, 212, 255, 0.4);
+
+  /* Text */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3b1cc;
+  --color-text-muted: #5a6a8a;
+
+  /* Accent */
+  --color-accent: #00d4ff;
+  --color-accent-secondary: #7b2fff;
+
+  /* Status */
+  --color-success: #00e396;
+  --color-warning: #feb019;
+  --color-danger: #ff6b6b;
+
+  /* Chart palette */
+  --chart-color-1: #00d4ff;
+  --chart-color-2: #7b2fff;
+  --chart-color-3: #ff6b6b;
+  --chart-color-4: #00e396;
+  --chart-color-5: #feb019;
+  --chart-color-6: #ff4081;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+}
+
+/* --- Scrollbar --- */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 212, 255, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 212, 255, 0.4);
+}

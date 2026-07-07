@@ -111,8 +111,10 @@ export function Dashboard() {
               error={rankings.error}
             />
           </div>
-          <div className={styles.bottomRight}>
+          <div className={styles.gaugeChart}>
             <GaugeChart data={gauge.data} loading={gauge.loading} error={gauge.error} />
+          </div>
+          <div className={styles.radarChart}>
             <RadarChart data={radar.data} loading={radar.loading} error={radar.error} />
           </div>
         </div>

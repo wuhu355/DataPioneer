@@ -1,16 +1,17 @@
 .tile {
+  --card-accent: var(--color-accent);
   background: rgba(15, 35, 70, 0.35);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   padding: 14px 18px;
   display: flex;
   flex-direction: column;
   gap: 6px;
   position: relative;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .tile:hover {
@@ -18,33 +19,35 @@
   box-shadow: var(--shadow-card-hover);
 }
 
-/* ── Active: top gradient bar ── */
-.tileActive {
-  border-color: #a18cd1;
-  box-shadow: var(--shadow-card-active);
-  transform: translateY(-2px);
-}
-
-.tileActive::before {
+/* ── 隐藏光条，激活时亮起 ── */
+.tile::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 3px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #4facfe 30%,
-    #a18cd1 70%,
+    var(--card-accent) 30%,
+    var(--card-accent) 70%,
     transparent 100%
   );
+  opacity: 0;
+  transition: opacity 0.3s ease;
   z-index: 2;
-  opacity: 1;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
 }
 
-.tileActive:hover {
-  border-color: #a18cd1;
+.tileActive {
+  border-color: var(--card-accent);
+  box-shadow: 0 0 35px rgba(79, 172, 254, 0.25);
+  transform: translateY(-2px);
+}
+
+.tileActive::before {
+  opacity: 1;
 }
 
 .header {
@@ -73,7 +76,7 @@
   font-size: 30px;
   font-weight: 700;
   font-family: 'Consolas', 'Courier New', monospace;
-  background: linear-gradient(135deg, #4facfe 0%, #a18cd1 100%);
+  background: linear-gradient(135deg, #4facfe 0%, #a18cd1 90%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

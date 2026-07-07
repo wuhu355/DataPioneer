@@ -39,7 +39,10 @@ export function StatTile({
   const isPositive = growth !== undefined && growth >= 0;
 
   return (
-    <div className={`${styles.tile} ${active ? styles.tileActive : ''}`} style={color ? { borderTopColor: color } : undefined}>
+    <div
+      className={`${styles.tile} ${active ? styles.tileActive : ''}`}
+      style={color ? { '--card-accent': color } as React.CSSProperties : undefined}
+    >
       <div className={styles.header}>
         <span className={styles.icon}>{icon}</span>
         <span className={styles.label}>{label}</span>
